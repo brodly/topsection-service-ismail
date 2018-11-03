@@ -17,4 +17,4 @@ const queryAsync = function (query, options = null) {
   });
 }
 
-module.exports = { connection, queryAsync, parseData };
+module.exports = { connection, queryAsync };
