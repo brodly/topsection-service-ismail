@@ -11,6 +11,12 @@ class CourseHeader extends Component {
 }
 
 const styles = {
-  headerContainerStyle: { height: '50%' , backgroundColor: '#505763'}
+  headerContainerStyle: {
+    position: 'absolute',
+    height: '52%',
+    width: '100%',
+    backgroundColor: '#505763',
+  }
 }
 export default CourseHeader;
+

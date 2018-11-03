@@ -8,11 +8,15 @@ class CoursePage extends Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.pageContainerStyle}>
         <CourseHeader courseData={this.props.courseData}/>
       </div>
     );
   }
+}
+
+const styles = {
+  pageContainerStyle: { marginTop: '50px' }
 }
 
 export default CoursePage;
