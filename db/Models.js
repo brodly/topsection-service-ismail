@@ -32,11 +32,14 @@ class Course extends Model {
   }
 
   getAll() {
-    this.super.getAll(this.tableName);
+    return this.getAll(this.tableName);
+  }
+
+  findCourseById(id) {
+    return this.getOneWhere({ id: 2 });
   }
 
 }
 
-module.exports.Model = Model;
-module.exports.Course = Course;
+module.exports.Course = new Course();
 
