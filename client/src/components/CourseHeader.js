@@ -7,6 +7,10 @@ class CourseHeader extends Component {
         <div style={styles.leftContainerStyle}>
           <h1>{'Learn This Now'}</h1>
           <h4>{'This course is all about honing your experience to become whatever you want to be.'}</h4>
+          <div style={styles.ratingContainerStyle}>
+          </div>
+          <div style={styles.otherInfoContainerStyle}>
+          </div>
         </div>
         <div style={styles.rightContainerStyle}>
           {'section 2'}
@@ -35,6 +39,10 @@ const styles = {
     backgroundColor: 'red',
     paddingTop: '4.5%',
     flex: 2
+  },
+  ratingContainerStyle: {
+    display: 'flex',
+    flexDirection: 'row'
   }
 
 }
