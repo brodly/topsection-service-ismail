@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
-class CourseHeader extends Component {
+import React from 'react';
+import { label, Rating } from 'semantic-ui-react';
 
-  render() {
-    return (
-      <div style={styles.headerContainerStyle}>
-        <div style={styles.leftContainerStyle}>
-          <h1>{'Learn This Now'}</h1>
-          <h4>{'This course is all about honing your experience to become whatever you want to be.'}</h4>
-          <div style={styles.ratingContainerStyle}>
-          </div>
-          <div style={styles.otherInfoContainerStyle}>
-          </div>
+const CourseHeader  = (props) => {
+  const title = props.courseData && props.courseData.title || '';
+  const subtitle = props.courseData && props.courseData.subtitle || '';
+  const rating = props.courseData && props.courseData.avg_rating || '';
+  return (
+    <div style={styles.headerContainerStyle}>
+      <div style={styles.leftContainerStyle}>
+        <h1>{title || ''}</h1>
+        <h4>{subtitle || ''}</h4>
+        <div style={styles.ratingContainerStyle}>
+          <Rating icon='star' defaultRating={rating} maxRating={5} />
         </div>
-        <div style={styles.rightContainerStyle}>
-          {'section 2'}
+        <div style={styles.otherInfoContainerStyle}>
         </div>
       </div>
-    );
-  }
+      <div style={styles.rightContainerStyle}>
+        {'section 2'}
+      </div>
+    </div>
+  );
+
 }
 
 const styles = {

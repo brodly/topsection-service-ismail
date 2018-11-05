@@ -17,8 +17,29 @@ describe('CourseHeader Component', () => {
   });
 
   test('displays the course subtitle', () => {
-    const { container } = render(<CourseHeader courseData={{ subtitle: 'test' }}/>);
+    const { container } = render(<CourseHeader courseData={{subtitle: 'test'}}/>);
     expect(container).toHaveTextContent('test');
   });
+
+  test('renders the rating component', () => {
+    const { container } = render(<CourseHeader courseData={{ avg_rating: 3 }} />);
+    const ratingComponent = container.querySelector('.ui.star.rating');
+    expect(ratingComponent).toBeInTheDocument();
+  })
+
+  test('Renders the rating component with the corrct star count', () => {
+    const { container } = render(<CourseHeader courseData={{ avg_rating: 3 }} />);
+    const starCount = container.querySelectorAll('.active').length;
+    expect(starCount).toBe(3);
+  })
+
+  test('Renders the label component with correct text', () => {
+    const tag = 'Bestseller';
+    const { container } = render(<CourseHeader courseData={{ hasTag: true, tag }} />);
+    const label = container.querySelector('.ui.label');
+    console.log(label)
+    // expect(label).toBeInTheDocument();
+    expect(label).toHaveTextContent(tag);
+  })
 
 })
