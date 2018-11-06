@@ -16,7 +16,6 @@ const CourseHeader  = (props) => {
     if (num > 1000){
       let arr = String(num).split('');
       arr.splice(arr.length-3, 0, ',');
-      console.log(arr.join(''));
       return arr.join('');
     } else return num;
   }
