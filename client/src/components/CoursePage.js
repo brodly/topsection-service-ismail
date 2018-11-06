@@ -11,7 +11,7 @@ class CoursePage extends Component {
     let tempCourseData = {
       title: 'Cognitive Behavioural Therapy (CBT) Practitioner Certificate',
       subtitle: 'Becoming a Cognitive Behavioural Therapy Practitioner with this Achology Accredited CBT Practitioner Certificate course',
-      avg_rating: 4,
+      avg_rating: 4.2,
       hasTag: true,
       tag: 'BESTSELLER',
       rating_count: 3458,

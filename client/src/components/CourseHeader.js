@@ -51,7 +51,7 @@ const CourseHeader  = (props) => {
 const styles = {
   headerContainerStyle: {
     position: 'absolute',
-    height: '52%',
+    height: '60%',
     width: '100%',
     backgroundColor: '#29303A',
     fontFamily:'Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif',
@@ -61,13 +61,13 @@ const styles = {
   },
   leftContainerStyle:{
     flex: 3.5,
-    paddingTop: '4.5%',
+    paddingTop: '4.1%',
     paddingLeft: '5%',
     paddingRight: '2%'
   },
   rightContainerStyle: {
     backgroundColor: 'red',
-    paddingTop: '4.5%',
+    paddingTop: '4.1%',
     flex: 2
   },
   ratingContainerStyle: {
@@ -84,6 +84,7 @@ const styles = {
   subtitleStyle: {
     fontSize: '21px',
     lineHeight: '27px',
+    marginBottom: '5px'
   },
   labelStyle: {
     marginLeft: 0,
