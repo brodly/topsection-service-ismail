@@ -1,5 +1,6 @@
 import React from 'react';
 import { Label, Rating } from 'semantic-ui-react';
+import CourseCtaCard from './CourseCtaCard';
 
 const CourseHeader  = (props) => {
   const courseData = props.courseData || {};
@@ -40,7 +41,7 @@ const CourseHeader  = (props) => {
         </div>
       </div>
       <div style={styles.rightContainerStyle}>
-        {'section 2'}
+        <CourseCtaCard courseData={courseData}/>
       </div>
     </div>
   );
@@ -50,7 +51,7 @@ const CourseHeader  = (props) => {
 const styles = {
   headerContainerStyle: {
     position: 'absolute',
-    height: '60%',
+    height: '50%',
     width: '100%',
     backgroundColor: '#29303A',
     fontFamily:'Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif',
@@ -65,7 +66,6 @@ const styles = {
     paddingRight: '2%'
   },
   rightContainerStyle: {
-    backgroundColor: 'red',
     paddingTop: '4.1%',
     flex: 2
   },
