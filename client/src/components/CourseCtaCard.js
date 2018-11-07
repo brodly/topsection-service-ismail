@@ -5,19 +5,19 @@ const CourseCtaCard = (props) => {
 
   const courseData = props.courseData || {};
   const {
-    isOnDiscount, oldPrice, current_price, discountPercent, course_len,
+    isOnDiscount, price, current_price, discount, course_len,
     num_of_articles, dwl_resources_count, discountCountdown
   } = courseData;
 
   const renderOldPrice = () => {
     if(isOnDiscount) {
-      return (<span style={styles.oldPriceStyle}> ${oldPrice} </span>);
+      return (<span style={styles.oldPriceStyle}> ${price} </span>);
     }
     return null;
   };
 const renderPrecentage = () => {
     if(isOnDiscount) {
-      return(<span style={styles.discountStyle}> {discountPercent} </span>)
+      return(<span style={styles.discountStyle}> {discount * 100}% Off</span>)
     }
     return null;
   };
@@ -40,7 +40,7 @@ const renderPrecentage = () => {
       <Image style={styles.thumbnailStyle} src='https://udemy-images.udemy.com/course/480x270/1091520_9b90_7.jpg' />
       <Card.Content style={styles.cardBodyStyle}>
         <Card.Header style={styles.priceContainerStyle} >
-          <span style={styles.priceStyle}> {`$${current_price}`} </span>
+          <span style={styles.currentPriceStyle}> {`$${current_price}`} </span>
           {renderOldPrice()}
           {renderPrecentage()}
         </Card.Header>
@@ -120,7 +120,7 @@ const styles = {
     alignItems: 'center',
     marginTop: '20px'
   },
-  priceStyle: {
+  currentPriceStyle: {
     fontSize: '36px',
     fontWeight: 700,
     color: '#505763',
