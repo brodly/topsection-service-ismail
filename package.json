@@ -13,7 +13,8 @@
     "mysql": "^2.16.0"
   },
   "scripts": {
-    "startdev": "nodemon /server/server.js"
+    "startdev": "nodemon /server/server.js",
+    "seeddb": "node db/seed.js"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

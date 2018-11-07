@@ -44,9 +44,9 @@ queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
   return queryAsync(`
    CREATE TABLE IF NOT EXISTS courses (
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      title VARCHAR (255),
-      subtitle VARCHAR (255),
-      teacher_name VARCHAR (255),
+      title VARCHAR(255),
+      subtitle VARCHAR(255),
+      teacher_names VARCHAR(255),
       avg_rating INT,
       rating_count INT,
       student_count INT,
@@ -55,7 +55,15 @@ queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
       price INT,
       lang VARCHAR(255),
       subtitle_lang VARCHAR(255),
-      course_len INT
+      course_len FLOAT,
+      isOnDiscount BOOLEAN,
+      current_price FLOAT,
+      discount FLOAT,
+      num_of_articles INT,
+      dwl_resources_count INT,
+      discountCountdown VARCHAR(12),
+      hasTag BOOLEAN,
+      tag VARCHAR(30)
     );
   `)
 })
@@ -75,28 +83,37 @@ queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
       return parsed;
     }, { fields: '', values: [] , placeholders: '' })
   };
-  for (let i = 0; i < 100; i += 1) {
+  for (let i = 0; i < 20000; i += 1) {
     const studentCount = faker.random.number();
     const ratingCount = studentCount * 0.4;
-    const randomBinary = Math.floor(Math.random() * 2);
-    const randomBinary2 = Math.floor(Math.random() * 2);
-    // Course.sync({ alter: true })
-    // .then(() => {
+    const randomBinary = () => Math.floor(Math.random() * 2);
+    const fullName = () => faker.name.firstName() + ' ' + faker.name.lastName();
+    const rand = Math.random;
+    const floor = Math.floor;
 
     const seedObj = {
       title: faker.hacker.verb() + ' ' + faker.name.jobTitle(),
       subtitle: `This course will teach you ALL you need about this job, so you can be armed with all the knowledge you need.!`,
-      teacher_name: faker.name.firstName() + ' ' + faker.name.lastName(),
-      avg_rating: Math.random() * 5,
+      teacher_names: `${fullName()}_${fullName()}`,
+      avg_rating: floor(rand() * 5),
       rating_count: ratingCount,
       student_count: studentCount,
-      last_updated: randomBinary ? faker.date.recent() : faker.date.past(),
+      last_updated: randomBinary() ? faker.date.recent() : faker.date.past(),
       thumbnail_img: faker.image.imageUrl(),
-      price: Math.floor(faker.commerce.price()),
-      lang: randomBinary ? randomBinary2 ? 'English' : 'Spanish' : 'Arabic',
-      subtitle_lang: randomBinary ? randomBinary2 ? 'Spanish' : 'Arabic' : 'English',
-      course_len: Math.floor(Math.random() * 50)
+      price: floor(faker.commerce.price()),
+      lang: randomBinary() ? randomBinary() ? 'English' : 'Spanish' : 'Arabic',
+      subtitle_lang: randomBinary() ? randomBinary() ? 'Spanish' : 'Arabic' : 'English',
+      course_len: Number((rand() * 50).toFixed(2)),
+      isOnDiscount: Boolean(randomBinary()),
+      current_price: Number((10 + rand() * 20).toFixed(2)),
+      discount: Number(rand().toFixed(2)),
+      num_of_articles: floor(rand() * 200),
+      dwl_resources_count: floor(rand() * 200),
+      discountCountdown: `${floor(rand() * 10)} days`,
+      hasTag: Boolean(randomBinary()),
+      tag:  randomBinary() ? randomBinary() ? 'BESTSELLER' : 'HOT' : 'NEW!',
     };
+
     const parsedData = parseData(seedObj);
     queryAsync(`INSERT INTO courses (${parsedData.fields}) VALUES (${parsedData.placeholders})`, parsedData.values)
     .catch((e) => console.log('error saving course instance: ', e));
@@ -127,11 +144,11 @@ queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
     //   avg_rating: Math.random() * 5,
     //   rating_count: studentCount,
     //   student_count: ratingCount,
-    //   last_update:  randomBinary ? faker.date.recent() : faker.date.past(),
+    //   last_update:  Math.floor(Math.random() * 2) ? faker.date.recent() : faker.date.past(),
     //   thumbnail_img: faker.image.imageUrl(),
-    //   lang: randomBinary ? randomBinary2 ? 'English' : 'Spanish' : 'Arabic',
+    //   lang: Math.floor(Math.random() * 2) ? Math.floor(Math.random() * 2) ? 'English' : 'Spanish' : 'Arabic',
     //   price: faker.commerce.price(),
-    //   subtitiles_lang: randomBinary ? randomBinary2 ? 'Spanish' : 'Arabic' : 'English',
+    //   subtitiles_lang: Math.floor(Math.random() * 2) ? Math.floor(Math.random() * 2) ? 'Spanish' : 'Arabic' : 'English',
     //   course_len: `${Math.floor(Math.random() *)} Hours`
     // })
 // const knex = require('knex')({
