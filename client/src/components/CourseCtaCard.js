@@ -25,7 +25,7 @@ const renderPrecentage = () => {
     if(isOnDiscount) {
       return (
         <Card.Meta style={styles.countDownContainerStyle}>
-          <span classname='date' style={styles.countDownTextStyle}>
+          <span className='date' style={styles.countDownTextStyle}>
             <Icon name='stopwatch' style={{marginright: 0}}/> <strong>{discountCountdown}</strong>
             {' left on this price'}
           </span>
