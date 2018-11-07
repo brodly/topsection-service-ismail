@@ -22,11 +22,20 @@ const CourseHeader  = (props) => {
     return nameStr.split('_').join(', ');
   };
 
-  const renderTag = () => hasTag ?
-    <Label color="yellow" style={styles.labelStyle} horizontal>
-      <span style={styles.labelTextStyle}>{tag}</span>
-    </Label> : '';
-
+  const renderTag = () => {
+    const tagColor = tag.includes('BESTSELLER') ?
+      'yellow'
+    : tag.includes('HOT') ?
+      'red'
+    : tag.includes('NEW') ?
+      'orange'
+    : '';
+    return hasTag ?
+      <Label color={tagColor} style={styles.labelStyle} horizontal>
+        <span style={styles.labelTextStyle}>{tag}</span>
+      </Label>
+    : '';
+  }
   return (
     <div style={styles.headerContainerStyle}>
       <div style={styles.leftContainerStyle}>
