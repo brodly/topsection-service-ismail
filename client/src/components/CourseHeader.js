@@ -6,7 +6,7 @@ const CourseHeader  = (props) => {
   const {
     title, subtitle, avg_rating,
     rating_count, student_count, hasTag,
-    tag, teacher_name, lang
+    tag, teacher_names, lang
   } = courseData;
 
   const addCommaToNum = (num) => {
@@ -16,6 +16,10 @@ const CourseHeader  = (props) => {
       return arr.join('');
     } else return num;
   }
+
+  const parseTeacherNames = (nameStr) => {
+    return nameStr.split('_').join(', ');
+  };
 
   const renderTag = () => hasTag ?
     <Label color="yellow" style={styles.labelStyle} horizontal>
@@ -34,9 +38,9 @@ const CourseHeader  = (props) => {
           <span style={styles.countsTextStyle}>{addCommaToNum(student_count) + ' students enrolled'}</span>
         </div>
         <div style={styles.otherInfoContainerStyle}>
-          <span>{teacher_name}</span>
+          <span>{`Created By ${parseTeacherNames(teacher_names)}`}</span>
           <span style={{ marginLeft: '15px', marginRight: '15px' }}> {'Last updated 8/12'}</span>
-          <span> <i className='far fa-comment' />{lang}</span>
+          <span> <i className='far fa-comment' /> {lang}</span>
         </div>
       </div>
       <div style={styles.rightContainerStyle}>
