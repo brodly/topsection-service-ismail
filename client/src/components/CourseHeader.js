@@ -17,7 +17,7 @@ const CourseHeader  = (props) => {
     } else return num;
   }
 
-  const parseTeacherNames = (nameStr) => {
+  const parseTeacherNames = (nameStr = '') => {
     return nameStr.split('_').join(', ');
   };
 
