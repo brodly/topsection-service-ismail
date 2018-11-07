@@ -3,13 +3,10 @@ import { Label, Rating } from 'semantic-ui-react';
 
 const CourseHeader  = (props) => {
   const courseData = props.courseData || {};
-  // const title = props.courseData.title;
-  // const subtitle = props.courseData.subtitle;
-  // const avg_rating = props.courseData.avg_rating;
-  // const rating_count = props.courseData.rating_count;
-  // const student_count = props.courseData.student_count;
   const {
-    title, subtitle, avg_rating, rating_count, student_count, hasTag, tag
+    title, subtitle, avg_rating,
+    rating_count, student_count, hasTag,
+    tag, teacher_name, lang
   } = courseData;
 
   const addCommaToNum = (num) => {
@@ -32,11 +29,14 @@ const CourseHeader  = (props) => {
         <p style={styles.subtitleStyle}>{subtitle}</p>
         <div style={styles.ratingContainerStyle}>
           {renderTag()}
-          <Rating  defaultRating={avg_rating} icon='star' maxRating={5} disabled/>
+          <Rating  defaultRating={avg_rating} icon='star' maxRating={5}  disabled/>
           <span style={styles.countsTextStyle}>{avg_rating + ` (${addCommaToNum(rating_count)} ratings)`}</span>
           <span style={styles.countsTextStyle}>{addCommaToNum(student_count) + ' students enrolled'}</span>
         </div>
         <div style={styles.otherInfoContainerStyle}>
+          <span>{teacher_name}</span>
+          <span style={{ marginLeft: '15px', marginRight: '15px' }}> {'Last updated 8/12'}</span>
+          <span> <i className='far fa-comment' />{lang}</span>
         </div>
       </div>
       <div style={styles.rightContainerStyle}>
@@ -74,6 +74,9 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
   },
+  ratingStyle: {
+    backgroundColor: '#fff'
+  },
   titleStyle: {
     paddingRight: '3%',
     fontSize: '36px',
@@ -98,6 +101,15 @@ const styles = {
     fontSize: '15px',
     lineHeight: 1.43,
     marginLeft: '10px'
+  },
+  otherInfoContainerStyle: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    fontSize: '15px',
+    fontFamily: 'Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif',
+    color: '#fff',
+    paddingTop: '10px'
   }
 }
 export default CourseHeader;

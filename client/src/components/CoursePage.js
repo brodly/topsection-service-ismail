@@ -34,7 +34,14 @@ class CoursePage extends Component {
 
 const styles = {
   pageContainerStyle: {},
-  breadcrumbStyle: { marginTop:'1%', paddingLeft: '4%', marginBottom: '1%', width:'100%' },
+  breadcrumbStyle: {
+    marginTop:'1%',
+    paddingLeft: '4%',
+    marginBottom: '1%',
+    width:'100%' ,
+    paddingTop: '3px',
+    paddingBottom: '3px',
+  },
   crumbStyle: { marginLeft: '1%', marginRight: '1%' }
 }
 export default CoursePage;
