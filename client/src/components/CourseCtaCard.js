@@ -4,7 +4,10 @@ import { Card, Icon, Image, Button } from 'semantic-ui-react';
 const CourseCtaCard = (props) => {
 
   const courseData = props.courseData || {};
-  const { isOnDiscount, oldPrice, discountPercent } = courseData;
+  const {
+    isOnDiscount, oldPrice, current_price, discountPercent, course_len,
+    num_of_articles, dwl_resources_count, discountCountdown
+  } = courseData;
 
   const renderOldPrice = () => {
     if(isOnDiscount) {
@@ -18,20 +21,30 @@ const renderPrecentage = () => {
     }
     return null;
   };
-return (
+  const renderCountdown = () => {
+    if(isOnDiscount) {
+      return (
+        <Card.Meta style={styles.countDownContainerStyle}>
+          <span classname='date' style={styles.countDownTextStyle}>
+            <Icon name='stopwatch' style={{marginright: 0}}/> <strong>{discountCountdown}</strong>
+            {' left on this price'}
+          </span>
+        </Card.Meta>
+      );
+    }
+    return null;
+  }
+
+  return (
     <Card style={styles.cardStyle}>
       <Image style={styles.thumbnailStyle} src='https://udemy-images.udemy.com/course/480x270/1091520_9b90_7.jpg' />
       <Card.Content style={styles.cardBodyStyle}>
         <Card.Header style={styles.priceContainerStyle} >
-          <span style={styles.priceStyle}> {'$12.99'} </span>
+          <span style={styles.priceStyle}> {`$${current_price}`} </span>
           {renderOldPrice()}
           {renderPrecentage()}
         </Card.Header>
-        <Card.Meta style={styles.countDownContainerStyle}>
-          <span className='date' style={styles.countDownTextStyle}>
-            <strong>{'2 Days'}</strong> {'left on this price'}
-          </span>
-        </Card.Meta>
+          {renderCountdown()}
         <div style={styles.btnContainerStyle} >
           <Button style={styles.cartBtnStyle}> {'Add To Cart'} </Button>
           <Button basic style={styles.buyNowBtnStyle}> {'Buy Now'} </Button>
@@ -41,18 +54,33 @@ return (
           {'Includes'}
         </Card.Description>
         <Card.Description>
-          <ul style={{ paddingLeft: 22, marginTop: '10px' }}>
-            <li> {'20.5 hours on-demand video'} </li>
-            <li> {'26 articles'} </li>
-            <li> {'Full lifetime access'} </li>
-            <li> {'Certificate of Completion'} </li>
+          <ul style={{ paddingLeft: 0, marginTop: '10px', listStyleType: 'none' }}>
+            <li>  <Icon name='play circle outline' style={{ marginRight:'2px' }} />
+              {`${course_len} hours on-demand video`}
+            </li>
+            <li> <Icon name='file outline' style={{ marginRight:'5px' }} />
+              {`${num_of_articles} articles`}
+            </li>
+            <li>
+              <Icon name='gem' style={{ marginRight:'4px' }} />
+              {'Full lifetime access'}
+            </li>
+            <li>
+              <Icon name='mobile alternate' style={{ marginRight:'4px' }} />
+              {'Access on mobile and TV'}
+            </li>
+            <li>
+              <Icon name='certificate' style={{ marginRight:'4px' }} />
+              {'Certificate of Completion'}
+            </li>
           </ul>
         </Card.Description>
         <Card.Description style={{ fontWeight: 700, color: '#505763', fontSize: '15px'}}>
           {'Interactive Features'}
         </Card.Description>
         <Card.Description style={{ paddingTop: '10px'}}>
-          {'193 downloadable resources'}
+          <Icon name='file alternate outline' style={{ marginRight:'2px' }} />
+          {`${dwl_resources_count} downloadable resources`}
         </Card.Description>
         <Card.Description style={{ paddingTop: '10px'}}>
           <p style={{ textAlign: 'center', cursor: 'pointer', color: '#007791', paddingTop: '15px', paddingBottom: '15px', fontSize: 15, fontWeight: 400 }}>
@@ -62,6 +90,7 @@ return (
       </Card.Content>
       <Card.Content extra>
           <p style={{ textAlign: 'center', cursor: 'pointer', color: '#007791', paddingTop: '15px', paddingBottom: '15px', fontSize: 15, fontWeight: 400 }}>
+            <Icon name='share' style={{ marginRight:'6px' }} />
             {'Share'}
           </p>
       </Card.Content>
@@ -115,7 +144,8 @@ const styles = {
     fontSize: '14px',
   },
   countDownContainerStyle: {
-    marginTop: '10px'
+    marginTop: '15px',
+    marginBottom: '5px'
   },
   btnContainerStyle: {
     display: 'flex',

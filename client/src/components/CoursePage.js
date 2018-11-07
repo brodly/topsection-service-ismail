@@ -18,8 +18,12 @@ class CoursePage extends Component {
       student_count: 94834,
       isOnDiscount: true,
       oldPrice: 199.99,
-      currentPrice: 19.99,
-      discountPercent: `94% off`
+      current_price: 19.99,
+      discountPercent: `94% off`,
+      course_len: 24.5,
+      num_of_articles: 84,
+      dwl_resources_count: 122,
+      discountCountdown: '3 days'
     }
     return (
       <div style={styles.pageContainerStyle}>
