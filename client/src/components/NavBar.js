@@ -3,6 +3,18 @@ import { Menu, Segment, Icon, Input, Breadcrumb, Button } from 'semantic-ui-reac
 
 class NavBar extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeitem: ''
+    };
+  }
+
+
+  handleItemHover (name) {
+    this.setState({ activeItem: name });
+  }
+
   render() {
     return (
       <div>
@@ -14,6 +26,9 @@ class NavBar extends Component {
             <Menu.Item
               style={{ color:'#505763', fontFamily: 'Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif', fontSize: '13px', fontWeight: 400 }}
               name='categories'
+              active={this.state.activeItem === 'categories'}
+              onMouseEnter={() => this.handleItemHover('categories')}
+              onMouseLeave={() => this.setState({ activeItem: '' })}
             >
               <Icon name='th' /> {'Categories'}
             </Menu.Item>
@@ -23,14 +38,23 @@ class NavBar extends Component {
             <Menu.Item
               style={styles.navBtnStyle}
               name='Udemy For Business'
-              active
+              active={this.state.activeItem === 'Udemy For Business'}
+              onMouseEnter={() => this.handleItemHover('Udemy For Business')}
+              onMouseLeave={() => this.setState({ activeItem: '' })}
             />
             <Menu.Item
               name='Become an Instructor'
               style={styles.navBtnStyle}
+              active={this.state.activeItem === 'Become an Instructor'}
+              onMouseEnter={() => this.handleItemHover('Become an Instructor')}
+              onMouseLeave={() => this.setState({ activeItem: '' })}
             />
             <Menu.Item
               style={styles.cardItemStyle}
+              name='shopping cart'
+              active={this.state.activeItem === 'shopping cart'}
+              onMouseEnter={() => this.handleItemHover('shopping cart')}
+              onMouseLeave={() => this.setState({ activeItem: '' })}
             >
               <Icon size='large' name='shopping cart' />
             </Menu.Item>
@@ -49,6 +73,7 @@ class NavBar extends Component {
       paddingTop: '5px',
       paddingBottom: '5px',
       paddingRight: '60px',
+      border: '0px solid',
       boxShadow: '0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1)'
     },
     logoStyle: { zoom: 3 },
@@ -66,7 +91,7 @@ class NavBar extends Component {
       color: '#505763',
     },
     cardItemStyle: {
-      paddingLeft: '2px',
+      paddingLeft: '7px',
       paddingRight: '2px'
     },
     logInBtnStyle: {
