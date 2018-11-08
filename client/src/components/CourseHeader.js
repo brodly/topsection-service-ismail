@@ -33,7 +33,7 @@ const CourseHeader  = (props) => {
       : '';
       return(
         <Label color={tagColor} style={styles.labelStyle} horizontal>
-          <span style={styles.labelTextStyle}>{tag}</span>
+          <span style={styles.labelTextStyle}>{tag.replace(/"/g, '')}</span>
         </Label>
       );
     }
