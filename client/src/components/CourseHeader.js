@@ -23,24 +23,26 @@ const CourseHeader  = (props) => {
   };
 
   const renderTag = () => {
-    const tagColor = tag.includes('BESTSELLER') ?
-      'yellow'
-    : tag.includes('HOT') ?
-      'red'
-    : tag.includes('NEW') ?
-      'orange'
-    : '';
-    return hasTag ?
-      <Label color={tagColor} style={styles.labelStyle} horizontal>
-        <span style={styles.labelTextStyle}>{tag}</span>
-      </Label>
-    : '';
+    if(hasTag) {
+      const tagColor = tag.includes('BESTSELLER') ?
+        'yellow'
+      : tag.includes('HOT') ?
+        'red'
+      : tag.includes('NEW') ?
+        'orange'
+      : '';
+      return(
+        <Label color={tagColor} style={styles.labelStyle} horizontal>
+          <span style={styles.labelTextStyle}>{tag}</span>
+        </Label>
+      );
+    }
   }
   return (
     <div style={styles.headerContainerStyle}>
       <div style={styles.leftContainerStyle}>
-        <h1 style={styles.titleStyle}>{title}</h1>
-        <p style={styles.subtitleStyle}>{subtitle}</p>
+        <h1 style={styles.titleStyle}>{title && title.replace(/"/g, '')}</h1>
+        <p style={styles.subtitleStyle}>{subtitle && subtitle.replace(/"/g, '')}</p>
         <div style={styles.ratingContainerStyle}>
           {renderTag()}
           <Rating  defaultRating={avg_rating} icon='star' maxRating={5}  disabled/>
@@ -48,9 +50,9 @@ const CourseHeader  = (props) => {
           <span style={styles.countsTextStyle}>{addCommaToNum(student_count) + ' students enrolled'}</span>
         </div>
         <div style={styles.otherInfoContainerStyle}>
-          <span>{`Created By ${parseTeacherNames(teacher_names)}`}</span>
+          <span>{`Created By ${parseTeacherNames(teacher_names).replace(/"/g,'')}`}</span>
           <span style={{ marginLeft: '15px', marginRight: '15px' }}> {'Last updated 8/12'}</span>
-          <span> <i className='far fa-comment' /> {lang}</span>
+          <span> <i className='far fa-comment' /> {lang && lang.replace(/"/g, '')}</span>
         </div>
       </div>
       <div style={styles.rightContainerStyle}>
@@ -64,7 +66,7 @@ const CourseHeader  = (props) => {
 const styles = {
   headerContainerStyle: {
     position: 'absolute',
-    height: '50%',
+    height: '45%',
     width: '100%',
     backgroundColor: '#29303A',
     fontFamily:'Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif',

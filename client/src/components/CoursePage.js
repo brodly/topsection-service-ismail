@@ -14,9 +14,9 @@ class CoursePage extends Component {
     const courseId = Math.floor(Math.random() * 20000);
     fetch(`/course/${courseId}`)
     .then((raw) => raw.json())
-    .then((course) => {
-      console.log('course', course);
-      this.setState({ course });
+    .then((courseData) => {
+      console.log('courseData', courseData);
+      this.setState({ course: courseData[0] });
     });
   }
 
@@ -30,13 +30,15 @@ class CoursePage extends Component {
       rating_count: 3458,
       student_count: 94834,
       isOnDiscount: true,
-      oldPrice: 199.99,
+      price: 199.99,
       current_price: 19.99,
-      discountPercent: `94% off`,
+      discount: 0.94,
       course_len: 24.5,
       num_of_articles: 84,
       dwl_resources_count: 122,
-      discountCountdown: '3 days'
+      discountCountdown: '3 days',
+      teacher_names: 'Vitor Belfort_Anderson Silva',
+      lang: 'English'
     }
     return (
       <div style={styles.pageContainerStyle}>
@@ -47,7 +49,7 @@ class CoursePage extends Component {
           <Breadcrumb.Divider icon='right chevron' />
           <Breadcrumb.Section active style={styles.crumbStyle}>{'One Day MVP'}</Breadcrumb.Section>
         </Breadcrumb>
-        <CourseHeader courseData={tempCourseData}/>
+        <CourseHeader courseData={this.state.course}/>
       </div>
     );
   }
