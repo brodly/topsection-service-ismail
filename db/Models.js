@@ -36,7 +36,7 @@ class Course extends Model {
   }
 
   findCourseById(id) {
-    return this.getOneWhere({ id: 2 });
+    return this.getOneWhere({ id });
   }
 
 }
