@@ -1,0 +1,14 @@
+version: '3'
+services:
+  topsection:
+    container_name: topsection-server
+    restart: always
+    build: .
+    ports:
+      - '80:7777'
+    links: [db]
+  db:
+    container_name: topsection-db
+    image: mysql
+    ports:
+      - '2714:2714'
