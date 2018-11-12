@@ -12,12 +12,12 @@ class App extends Component {
   }
 
   componentDidMount(){
-    const courseId = Math.floor(Math.random() * 20000);
-    fetch(`ec2-54-152-27-113.compute-1.amazonaws.com/course/${courseId}`)
-    .then((raw) => raw.json())
-    .then((courseData) => {
-      this.setState({ course: courseData[0] });
-    });
+    // const courseId = Math.floor(Math.random() * 20000);
+    // fetch(`ec2-54-152-27-113.compute-1.amazonaws.com/course/${courseId}`)
+    // .then((raw) => raw.json())
+    // .then((courseData) => {
+    //   this.setState({ course: courseData[0] });
+    // });
   }
 
   render() {
@@ -50,7 +50,7 @@ class App extends Component {
           <Breadcrumb.Divider icon='right chevron' />
           <Breadcrumb.Section active style={styles.crumbStyle}>{'One Day MVP'}</Breadcrumb.Section>
         </Breadcrumb>
-        <CourseHeader courseData={this.state.course}/>
+        <CourseHeader courseData={tempCourseData}/>
       </div>
     );
   }
