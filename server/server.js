@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(cors());
 
-app.get('/', (req, res) => res.render('index.html'));
-
 app.get('/course/:courseId', (req, res) => {
   Course.findCourseById(req.params.courseId)
   .then((course) => {
