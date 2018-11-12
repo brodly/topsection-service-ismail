@@ -5,10 +5,18 @@ services:
     restart: always
     build: .
     ports:
-      - '80:7777'
-    links: [db]
-  db:
-    container_name: topsection-db
-    image: mysql
+      - '7777:7777'
+    depends_on: 
+      - topsectiondb
+    environment:
+      - PORT=7777
+  topsectiondb:
+    container_name: topsectiondb
+    image: mysql:8.0.3
+    restart: always
     ports:
-      - '2714:2714'
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+  
+
