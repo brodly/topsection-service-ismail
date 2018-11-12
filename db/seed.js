@@ -21,9 +21,10 @@ const mysql = require('mysql')
 // });
 
 const db = mysql.createConnection({
-  host: 'localhost',
+  host: 'topsectiondb',
   user: 'root',
-  password: 'password'
+  password: 'password',
+  database: 'udemy'
 })
 
 db.connect();
@@ -36,13 +37,8 @@ const queryAsync = function (query, options = null) {
     })
   })
 }
-
-queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
-.then(() => queryAsync('USE udemy;'))
-// .then(() => queryAsync('CREATE TABLE IF NOT EXISTS courses;'))
-.then(() => {
-  return queryAsync(`
-   CREATE TABLE IF NOT EXISTS courses (
+  queryAsync(`
+    CREATE TABLE IF NOT EXISTS courses (
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       title VARCHAR(255),
       subtitle VARCHAR(255),
@@ -66,7 +62,6 @@ queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
       tag VARCHAR(30)
     );
   `)
-})
 .then(() => {
   const parseData = input => {
     return Object.entries(input).reduce((parsed, [ key, val ], index, entries) => {
@@ -83,7 +78,7 @@ queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
       return parsed;
     }, { fields: '', values: [] , placeholders: '' })
   };
-  for (let i = 0; i < 20000; i += 1) {
+  for (let i = 0; i < 200; i += 1) {
     const studentCount = faker.random.number();
     const ratingCount = studentCount * 0.4;
     const randomBinary = () => Math.floor(Math.random() * 2);

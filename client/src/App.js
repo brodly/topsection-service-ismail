@@ -13,7 +13,7 @@ class App extends Component {
 
   componentDidMount(){
     const courseId = Math.floor(Math.random() * 20000);
-    fetch(`/course/${courseId}`)
+    fetch(`ec2-54-152-27-113.compute-1.amazonaws.com/course/${courseId}`)
     .then((raw) => raw.json())
     .then((courseData) => {
       this.setState({ course: courseData[0] });

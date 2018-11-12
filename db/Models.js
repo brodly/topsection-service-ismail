@@ -1,4 +1,4 @@
-const { queryAsync } = require('./db.js');
+const { connection } = require('./db.js');
 
 class Model {
 
@@ -15,12 +15,12 @@ class Model {
   }
 
   getAll() {
-    return queryAsync(`SELECT * FROM ${this.tableName};`);
+    return connection.queryAsync(`SELECT * FROM ${this.tableName};`);
   }
 
   getOneWhere(params) {
     const parsedParams = this.parseSelectQuery(params);
-    return queryAsync(`SELECT * FROM ${this.tableName} WHERE ${parsedParams.fields}`, parsedParams.values);
+    return connection.queryAsync(`SELECT * FROM ${this.tableName} WHERE ${parsedParams.fields}`, parsedParams.values);
   }
 
 }
