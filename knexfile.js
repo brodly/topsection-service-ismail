@@ -6,7 +6,6 @@ module.exports = {
     client: 'pg',
     connection,
     migrations: {
-      tableName: 'courses',
       directory: path.join(__dirname, '/db/migrations'),
     },
     seeds: {
