@@ -1,7 +1,5 @@
 const faker = require('faker');
-const db = require('./index');
-
-db.client();
+const { pg } = require('./index');
 
 // const queryAsync = (query, options = null) => {
 //   return new Promise((resolve, reject) => {
