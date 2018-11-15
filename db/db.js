@@ -1,4 +1,4 @@
-const { client } = require('./index');
+const { client } = require('./index.pg');
 
 client((err) => {
   if (err) console.log(err);
