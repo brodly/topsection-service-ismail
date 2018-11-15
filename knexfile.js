@@ -1,10 +1,10 @@
 const path = require('path');
-const connection = require('./db/config');
+const { pg: connection } = require('./db/config');
 
 module.exports = {
   development: {
     client: 'pg',
-    connection: connection.pg,
+    connection,
     migrations: {
       tableName: 'courses',
       directory: path.join(__dirname, '/db/migrations'),
