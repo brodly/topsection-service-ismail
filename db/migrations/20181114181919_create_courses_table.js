@@ -19,7 +19,6 @@ exports.up = (knex, Promise) => knex.schema.createTable('courses', (table) => {
   table.string('discountCountdown', 12).notNullable();
   table.boolean('hasTag').notNullable();
   table.string('tag', 30).notNullable();
-  table.timestamps();
 });
 
 exports.down = (knex, Promise) => knex.schema.dropTableIfExists('courses');
