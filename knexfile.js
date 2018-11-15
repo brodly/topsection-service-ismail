@@ -4,9 +4,10 @@ const connection = require('./db/config');
 module.exports = {
   development: {
     client: 'pg',
-    connection,
+    connection: connection.pg,
     migrations: {
-      tableName: path.join(__dirname, '/db/migrations'),
+      tableName: 'courses',
+      directory: path.join(__dirname, '/db/migrations'),
     },
     seeds: {
       directory: path.join(__dirname, '/db/seeds'),
