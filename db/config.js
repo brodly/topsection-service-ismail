@@ -1,7 +1,7 @@
 module.exports.pg = {
   host: 'localhost',
-  user: 'root',
-  password: 'password',
+  user: 'joshuamarx',
+  password: '',
   port: 5432,
   database: 'udemy',
 };
