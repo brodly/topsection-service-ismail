@@ -1,4 +1,4 @@
-const { connection } = require('./db.js');
+const { connection } = require('./db');
 
 class Model {
   constructor(tableName) {
