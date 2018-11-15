@@ -3,7 +3,7 @@ const { performance } = require('perf_hooks');
 const faker = require('faker');
 const csv = require('fast-csv');
 
-const dataPoints = 1000000;
+const dataPoints = 10000000;
 const csvStream = csv.createWriteStream({ headers: false });
 const writableStream = fs.createWriteStream('outputfile.csv');
 
