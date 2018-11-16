@@ -7,12 +7,9 @@ const dataPoints = 10000000;
 const csvStream = csv.createWriteStream({ headers: false });
 const writableStream = fs.createWriteStream('outputfile.csv');
 
-writableStream.on('finish', () => {
-  console.log(`Done! Call to generateData took ${t1 - t0} milliseconds with ${dataPoints} data points`);
-});
+const t0 = performance.now();
 
 csvStream.pipe(writableStream);
-const t0 = performance.now();
 
 for (let i = 0; i < dataPoints; i += 1) {
   const studentCount = faker.random.number();
@@ -49,4 +46,10 @@ for (let i = 0; i < dataPoints; i += 1) {
 }
 
 csvStream.end();
+
 const t1 = performance.now();
+
+writableStream.on('finish', () => {
+  // eslint-disable-next-line no-console
+  console.log(`Done! Call to generateData took ${t1 - t0} milliseconds with ${dataPoints} data points`);
+});
