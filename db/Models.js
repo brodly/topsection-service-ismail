@@ -1,4 +1,4 @@
-const { connection } = require('./db');
+const db = require('./index');
 
 class Model {
   constructor(tableName) {
@@ -15,12 +15,12 @@ class Model {
   }
 
   getAll() {
-    return connection.queryAsync(`SELECT * FROM ${this.tableName};`);
+    return db.queryAsync(`SELECT * FROM ${this.tableName};`);
   }
 
   getOneWhere(params) {
     const parsedParams = this.parseSelectQuery(params);
-    return connection.queryAsync(`SELECT * FROM ${this.tableName} WHERE ${parsedParams.fields}`, parsedParams.values);
+    return db.queryAsync(`SELECT * FROM ${this.tableName} WHERE ${parsedParams.fields}`, parsedParams.values);
   }
 }
 
