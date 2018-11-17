@@ -1,12 +1,8 @@
 const Knex = require('knex');
-const { pg: config } = require('./config');
+const connection = require('./config');
 
-module.exports.pg = Knex({
+module.exports = Knex({
   client: 'pg',
-  user: config.user,
-  host: config.host,
-  database: config.database,
-  password: config.password,
-  port: config.port,
+  connection,
   pool: { min: 0, max: 7 },
 });
