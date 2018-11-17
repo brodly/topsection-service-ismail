@@ -1,5 +1,5 @@
 const path = require('path');
-const { pg: connection } = require('./db/config');
+const connection = require('./db/config');
 
 module.exports = {
   development: {
