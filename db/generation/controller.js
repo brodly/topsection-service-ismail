@@ -1,9 +1,12 @@
-const Promise = require('bluebird');
-const generateData = require('./generateData');
-const { seed, dropTableIfExists } = require('./insertData');
+/* eslint-disable no-console */
 
-const amountPerGeneration = 1000000;
-const maxItems = 3000000;
+const Promise = require('bluebird');
+const { performance } = require('perf_hooks');
+const generateData = require('./generateData');
+const { seed, clearTable } = require('./insertData');
+
+const amountPerGeneration = 10000;
+const maxItems = 30000;
 const table = 'courses';
 
 let start = 0;
@@ -21,15 +24,21 @@ const promiseWhile = (condition, action) => {
   return resolver.promise;
 };
 
-dropTableIfExists(table);
+const t0 = performance.now();
 
-promiseWhile(() => start < maxItems, () => {
-  return generateData(start, end)
-    .then((res) => { console.log(res); })
-    .then(() => seed())
-    .then((res) => { console.log(res); })
-    .then(() => {
-      start += amountPerGeneration;
-      end += amountPerGeneration;
-    });
-});
+clearTable(table);
+
+promiseWhile(() => end <= maxItems, () => generateData(start, end)
+  .then((res) => { console.log(res); })
+  .then(() => seed(table))
+  .then((res) => { console.log(res); })
+  .then(() => {
+    start += amountPerGeneration;
+    end += amountPerGeneration;
+  })
+  .catch(err => console.error('ERROR: ', err)))
+  .then(() => console.log(`Completed seeding '${table}' with ${maxItems} items`))
+  .then(() => {
+    const t1 = performance.now();
+    console.log(`Done! Total data generation and seeding took ${t1 - t0} milliseconds`);
+  });
