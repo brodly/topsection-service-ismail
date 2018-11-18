@@ -1,7 +1,5 @@
-const Knex = require('knex');
 const connection = require('./config');
-
-module.exports = Knex({
+module.exports = require('knex')({
   client: 'pg',
   connection,
   pool: { min: 0, max: 7 },
