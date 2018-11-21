@@ -35,7 +35,7 @@ promiseWhile(() => end <= maxItems, () => generateData(start, end)
     start += amountPerGeneration;
     end += amountPerGeneration;
   })
-  .catch``((err) => { throw err; }))
+  .catch((err) => { throw err; }))
   .then(() => {
     db.destroy();
     console.log(`Completed seeding '${table}' with ${maxItems} items`);
