@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
-const { Course } = require('../db/Models.js');
+const { Course } = require('../db/models/Models');
 
 const app = express();
 
