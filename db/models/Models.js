@@ -1,11 +1,13 @@
-const db = require('./index');
+/* eslint-disable no-param-reassign */
+/* eslint-disable class-methods-use-this */
+
+const db = require('../index');
 
 class Model {
   constructor(tableName) {
     this.tableName = tableName;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   parseSelectQuery(input) {
     return Object.entries(input).reduce((parsed, [key, val]) => {
       parsed.fields += `${key} = ? `;
