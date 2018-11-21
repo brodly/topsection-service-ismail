@@ -8,14 +8,14 @@
   "dependencies": {
     "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
+    "cassandra-client": "^0.15.2",
+    "cassandra-driver": "^3.5.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "faker": "^4.1.0",
-    "fast-csv": "^2.4.1",
     "global": "^4.3.2",
     "knex": "^0.15.2",
-    "pg": "^7.6.1",
-    "ravendb": "^4.0.4"
+    "pg": "^7.6.1"
   },
   "scripts": {
     "start": "node server/server.js",
