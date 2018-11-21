@@ -1,15 +1,13 @@
 /* eslint-disable no-console */
 
-const fs = require('fs');
 const Promise = require('bluebird');
 const generateData = require('./generateData');
 const { seed, clearTable } = require('./insertData');
 const db = require('../index');
 
-const amountPerGeneration = 100;
-const maxItems = 500;
+const amountPerGeneration = 1000000;
+const maxItems = 10000000;
 const table = 'courses';
-const file = 'outputfile.csv';
 
 let start = 0;
 let end = amountPerGeneration;
@@ -29,17 +27,15 @@ const promiseWhile = (condition, action) => {
 clearTable(table)
   .then((res) => { console.log(`Deleted ${res} rows in ${table}`); });
 
-promiseWhile(() => end <= maxItems, () => {
-  return generateData(start, end)
-    .then((res) => { console.log(res); })
-    .then(() => seed(table))
-    .then((res) => { console.log(res); })
-    .then(() => {
-      start += amountPerGeneration;
-      end += amountPerGeneration;
-    })
-    .catch((err) => { throw err; });
-})
+promiseWhile(() => end <= maxItems, () => generateData(start, end)
+  .then((res) => { console.log(res); })
+  .then(() => seed(table))
+  .then((res) => { console.log(res); })
+  .then(() => {
+    start += amountPerGeneration;
+    end += amountPerGeneration;
+  })
+  .catch``((err) => { throw err; }))
   .then(() => {
     db.destroy();
     console.log(`Completed seeding '${table}' with ${maxItems} items`);
