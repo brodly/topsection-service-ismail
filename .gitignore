@@ -2,5 +2,5 @@
 node_modules/
 *.swp
 *.swo
-public/bundle.js
+bundle.js
 outputfile.csv
