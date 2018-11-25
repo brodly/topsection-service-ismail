@@ -1,18 +1,10 @@
-const db = require('./index');
+const connection = require('./index');
 
-db((err) => {
+connection((err) => {
   if (err) console.log(err);
 });
 
-// connection.queryAsync = function queryAsync(query, options) {
-//   const thisPool = this;
-//   return new Promise((resolve, reject) => {
-//     thisPool.query(query, options, (err, results, fields) => {
-//       if (err) reject(err);
-//       else resolve(results, fields);
-//     });
-//   });
-// };
+connection.queryAsync = (query, options) => connection.raw(query, options);
 
 // connection.queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
 //   .then(() => connection.queryAsync('USE udemy;'))
@@ -63,4 +55,4 @@ db((err) => {
 // }
 // });
 
-module.exports = { connection };
+module.exports = connection;
