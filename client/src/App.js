@@ -25,11 +25,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const courseId = Math.floor(Math.random() * 200);
+    const courseId = Math.floor(Math.random() * 10000000);
     fetch(`/course/${courseId}`)
       .then(raw => raw.json())
       .then((courseData) => {
-        this.setState({ course: courseData[0] });
+        this.setState({ course: courseData.rows[0] });
       });
   }
 
