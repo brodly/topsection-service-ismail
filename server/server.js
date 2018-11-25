@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+require('newrelic');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -19,7 +20,8 @@ app.get('/course/:courseId', (req, res) => {
   Course.findCourseById(req.params.courseId)
     .then((course) => {
       res.send(course).end();
-    });
+    })
+    .catch(err => console.log(err));
 });
 
 app.listen(port, () => console.log(`listening on port: ${port}`));
