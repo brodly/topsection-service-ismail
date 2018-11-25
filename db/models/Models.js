@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
 
-const db = require('../index');
+const db = require('../db');
 
 class Model {
   constructor(tableName) {
