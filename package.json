@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "seed": "node db/seed.js"
+    "seed": "node db/generation/controller.js"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
