@@ -6,36 +6,20 @@ connection((err) => {
 
 connection.queryAsync = (query, options) => connection.raw(query, options);
 
-// connection.queryAsync('CREATE DATABASE IF NOT EXISTS udemy;')
-//   .then(() => connection.queryAsync('USE udemy;'))
-//   .then(() => (
-//     connection.queryAsync(`
-//     CREATE TABLE IF NOT EXISTS courses (
-//         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//         title VARCHAR(255),
-//         subtitle VARCHAR(255),
-//         teacher_names VARCHAR(255),
-//         avg_rating INT,
-//         rating_count INT,
-//         student_count INT,
-//         last_updated DATE,
-//         thumbnail_img TEXT,
-//         price INT,
-//         lang VARCHAR(255),
-//         subtitle_lang VARCHAR(255),
-//         course_len FLOAT,
-//         isOnDiscount BOOLEAN,
-//         current_price FLOAT,
-//         discount FLOAT,
-//         num_of_articles INT,
-//         dwl_resources_count INT,
-//         discountCountdown VARCHAR(12),
-//         hasTag BOOLEAN,
-//         tag VARCHAR(30)
-//       );
-//     `)
-//   ))
-//   .catch(error => console.log('error configuring db', error));
+connection.queryAsync("SELECT 1 FROM pg_database WHERE datname = 'udemy'")
+  .then((res) => {
+    if (res.rowCount === 1) throw res;
+    else { return connection.queryAsync('CREATE DATABASE udemy'); }
+  })
+  .then(() => connection.migrate.latest())
+  .then(() => {
+    connection.destroy();
+    console.log('Database created');
+  })
+  .catch(() => {
+    connection.destroy();
+    console.log("Database 'udemy' already exists");
+  });
 
 // let queryAsync = function (query, options = null) {
 //   let connect = this;
