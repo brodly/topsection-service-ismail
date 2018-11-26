@@ -1,5 +1,5 @@
-const faker = require('faker');
-const db = require('./index');
+// const faker = require('faker');
+// const db = require('./index');
 
 // const queryAsync = (query, options = null) => {
 //   return new Promise((resolve, reject) => {
