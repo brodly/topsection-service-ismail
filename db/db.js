@@ -4,7 +4,7 @@ connection((err) => {
   if (err) console.log(err);
 });
 
-connection.queryAsync = (query, options) => connection.raw(query, options);
+connection.queryAsync = (query, options = null) => connection.raw(query, options);
 
 connection.queryAsync("SELECT 1 FROM pg_database WHERE datname = 'udemy'")
   .then((res) => {
