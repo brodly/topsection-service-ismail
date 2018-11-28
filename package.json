@@ -8,7 +8,6 @@
   "dependencies": {
     "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
-    "cassandra-client": "^0.15.2",
     "cassandra-driver": "^3.5.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
@@ -21,7 +20,7 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "seed": "node db/generation/controller.js"
+    "seed": "knex migration:latest && node db/generation/controller.js"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
