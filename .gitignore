@@ -2,6 +2,7 @@
 node_modules/
 *.swp
 *.swo
-bundle.js
+public/bundle.js
 outputfile.csv
 newrelic.js
+newrelic_agent.log
