@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { performance } = require('perf_hooks');
-const { Readable } = require('stream');
+// const { Readable } = require('stream'); // Used only for data stream configuration
 const faker = require('faker');
 const csv = require('fast-csv');
 
@@ -20,6 +20,7 @@ const generate = (start, end) => new Promise((resolve) => {
     const { random } = Math;
     const { floor } = Math;
 
+    // See below for Cassandra specific seedObj
     const seedObj = {
       id: i,
       title: `${faker.hacker.verb()} ${faker.name.jobTitle()}`,
@@ -106,3 +107,28 @@ Data Stream Version below
 // });
 
 // generate(1, 20);
+
+/* Use this as the seedObj for Cassandra as it requires alphabetical order for insertion via csv */
+// const seedObj = {
+//   id: i,
+//   avg_rating: floor(random() * 5),
+//   course_len: Number((random() * 50).toFixed(2)),
+//   current_price: Number((10 + random() * 20).toFixed(2)),
+//   discount: Number(random().toFixed(2)),
+//   discountCountdown: `${floor(random() * 10)} days`,
+//   dwl_resources_count: floor(random() * 200),
+//   hasTag: Boolean(randomBinary()),
+//   isOnDiscount: Boolean(randomBinary()),
+//   lang: randomBinary() ? 'English' : 'Spanish',
+//   last_updated: randomBinary() ? faker.date.recent().toJSON() : faker.date.past().toJSON(),
+//   num_of_articles: floor(random() * 200),
+//   price: floor(faker.commerce.price()),
+//   rating_count: ratingCount,
+//   student_count: studentCount,
+//   subtitle: 'This course will teach you ALL you need about this job, so you can be armed with all the knowledge you need!',
+//   subtitle_lang: randomBinary() ? 'Spanish' : 'Arabic',
+//   tag: randomBinary() ? 'BESTSELLER' : 'NEW!',
+//   teacher_names: `${fullName()}`,
+//   thumbnail_img: faker.image.imageUrl(),
+//   title: `${faker.hacker.verb()} ${faker.name.jobTitle()}`,
+// };

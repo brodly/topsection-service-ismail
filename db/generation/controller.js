@@ -5,13 +5,12 @@ const fs = require('fs');
 const path = require('path');
 const generateData = require('./generateData');
 const { seed, clearTable } = require('./insertData');
-const db = require('../index');
+const connection = require('../index');
 
 const amountPerGeneration = 1000000;
-const maxItems = 10000000;
+const maxItems = 1000000;
 const table = 'courses';
 const csvName = 'outputfile.csv';
-
 const csvLocation = path.join(__dirname, csvName);
 
 let start = 0;
@@ -40,8 +39,8 @@ const genscript = () => {
     })
     .catch((err) => { throw err; }))
     .then(() => {
-      db.destroy();
-      fs.unlinkAsync(csvLocation);
+      connection.shutdown();
+      fs.unlinkSync(csvLocation);
       console.log(`Completed seeding '${table}' with ${maxItems} items`);
     });
 };
