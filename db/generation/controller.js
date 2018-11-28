@@ -39,7 +39,7 @@ const genscript = () => {
     })
     .catch((err) => { throw err; }))
     .then(() => {
-      connection.shutdown();
+      connection.destroy(); // Note: connection.shutdown() is needed for Cassandra
       fs.unlinkSync(csvLocation);
       console.log(`Completed seeding '${table}' with ${maxItems} items`);
     });
