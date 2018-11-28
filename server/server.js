@@ -18,9 +18,7 @@ app.use(cors());
 
 app.get('/course/:courseId', (req, res) => {
   Course.findCourseById(req.params.courseId)
-    .then((course) => {
-      res.send(course).end();
-    })
+    .then((course) => { res.send(course).end(); })
     .catch(err => console.log(err));
 });
 
